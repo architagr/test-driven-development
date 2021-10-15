@@ -8,10 +8,11 @@ import (
 func TestCheckIfPrime(test *testing.T) {
 
 	input := 2879
+	expected := true
 	output := CheckIfPrime(input)
 
-	if !output {
-		test.Errorf("number {%d} is prime but function says it is not prime", input)
+	if output != expected {
+		test.Error("number {", input, "} CheckIfPrime expected:{", expected, "} but got {", output, "}")
 	}
 }
 
@@ -30,8 +31,9 @@ func TestCheckIfPrimeTable(test *testing.T) {
 
 	for _, testCase := range testCases {
 		test.Run(fmt.Sprintf("Testing %d", testCase.input), func(t *testing.T) {
+
 			if got := CheckIfPrime(testCase.input); got != testCase.expected {
-				t.Errorf("number {%d} CheckIfPrime expected:{%t} but got {%t}", testCase.input, testCase.expected, !testCase.expected)
+				t.Errorf("number {%d} CheckIfPrime expected:{%t} but got {%t}", testCase.input, testCase.expected, got)
 			}
 		})
 	}
